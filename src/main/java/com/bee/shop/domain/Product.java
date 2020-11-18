@@ -1,20 +1,20 @@
 package com.bee.shop.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Product {
-	@NonNull
+	private UUID id;
 	private String name;
-	@NonNull
 	private BigDecimal price;
-	@NonNull
 	private String availability;
 }
