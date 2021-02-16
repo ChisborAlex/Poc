@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,17 +22,15 @@ public class ProductService {
 	private final ProductMapper productMapper;
 
 	public List<ProductEntity> getAllProducts() {
-		return productRepository.findAll().stream().map(productMapper::toProduct).collect(Collectors.toList());
+		return new ArrayList<>(productRepository.findAll());
 	}
 
 	public ProductEntity getProductById(String productId) {
-		var entity = productRepository.findById(UUID.fromString(productId)).orElseThrow(ResourceNotFoundException::new);
-		return productMapper.toProduct(entity);
+		return productRepository.findById(UUID.fromString(productId)).orElseThrow(ResourceNotFoundException::new);
 	}
 
 	public ProductEntity addProduct(@NonNull ProductEntity productEntity) {
-		var savedProduct = productRepository.save(productMapper.toEntity(productEntity));
-		return productMapper.toProduct(savedProduct);
+		return productRepository.save(productEntity);
 	}
 
 	public ProductEntity updateProduct(@NonNull ProductEntity productEntity) {
@@ -40,7 +38,7 @@ public class ProductService {
 		storedProduct.setName(productEntity.getName() != null ? productEntity.getName() : storedProduct.getName());
 		storedProduct.setPrice(productEntity.getPrice() != null ? productEntity.getPrice() : storedProduct.getPrice());
 		storedProduct.setAvailability(productEntity.getAvailability() != null ? productEntity.getAvailability() : storedProduct.getAvailability());
-		return productMapper.toProduct(productRepository.save(storedProduct));
+		return productRepository.save(storedProduct);
 	}
 
 	public void deleteProduct(UUID productId) {

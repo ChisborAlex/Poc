@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/product")
 @AllArgsConstructor
 @Slf4j
 public class ProductsController {
