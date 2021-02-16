@@ -5,19 +5,20 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
-@Table(name = "product")
+@Table(name = "address")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductEntity extends BasicEntity {
+public class UserAddressEntity extends BasicEntity{
 
-	private String name;
-	private BigDecimal price;
-	private String availability;
+	private String houseNumber;
+	private String streetName;
+	private String cityName;
+	private String postalCode;
 }

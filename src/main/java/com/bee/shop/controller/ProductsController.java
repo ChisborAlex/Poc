@@ -1,6 +1,6 @@
 package com.bee.shop.controller;
 
-import com.bee.shop.domain.Product;
+import com.bee.shop.model.ProductEntity;
 import com.bee.shop.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -21,23 +21,23 @@ public class ProductsController {
 
 
 	@GetMapping
-	public List<Product> getAllProducts() {
+	public List<ProductEntity> getAllProducts() {
 		return productService.getAllProducts();
 	}
 
 	@GetMapping(path = "/{product-id}")
-	public Product getProductById(@PathVariable("product-id") String productId) {
+	public ProductEntity getProductById(@PathVariable("product-id") String productId) {
 		return productService.getProductById(productId);
 	}
 
 	@PostMapping
-	public Product addProduct(@RequestBody Product product) {
-		return productService.addProduct(product);
+	public ProductEntity addProduct(@RequestBody ProductEntity productEntity) {
+		return productService.addProduct(productEntity);
 	}
 
 	@PutMapping
-	public Product updateProduct(@RequestBody Product product) {
-		return productService.updateProduct(product);
+	public ProductEntity updateProduct(@RequestBody ProductEntity productEntity) {
+		return productService.updateProduct(productEntity);
 
 	}
 

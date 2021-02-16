@@ -2,24 +2,24 @@ package com.bee.shop.domain;
 
 import com.bee.shop.model.ProductEntity;
 import lombok.NonNull;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductMapper {
 
-	public Product toProduct(@NonNull ProductEntity entity) {
-		return Product.builder()
-				.id(entity.getId())
+	public ProductEntity toProduct(@NonNull com.bee.shop.model.ProductEntity entity) {
+		return ProductEntity.builder()
 				.name(entity.getName())
 				.price(entity.getPrice())
 				.availability(entity.getAvailability())
 				.build();
 	}
 
-	public ProductEntity toEntity(@NonNull Product product) {
-		return ProductEntity.builder()
-				.id(product.getId())
-				.name(product.getName())
-				.price(product.getPrice())
-				.availability(product.getAvailability())
+	public com.bee.shop.model.ProductEntity toEntity(@NonNull ProductEntity productEntity) {
+		return com.bee.shop.model.ProductEntity.builder()
+				.name(productEntity.getName())
+				.price(productEntity.getPrice())
+				.availability(productEntity.getAvailability())
 				.build();
 	}
 }

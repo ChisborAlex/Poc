@@ -4,20 +4,22 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "user")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductEntity extends BasicEntity {
+public class UserEntity extends BasicEntity {
 
-	private String name;
-	private BigDecimal price;
-	private String availability;
+	private String lastName;
+	private String firstName;
+	@OneToMany
+	private List<UserAddressEntity> addresses;
 }
