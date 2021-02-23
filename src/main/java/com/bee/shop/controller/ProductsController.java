@@ -25,6 +25,13 @@ public class ProductsController {
 		return productService.getAllProducts();
 	}
 
+	@GetMapping(path = "/type")
+	public Long getTotalNumberOfProductsByType(@RequestParam String type) {
+		return productService.getAllProducts().stream()
+				.filter(product -> product.getProductType().name().equals(type))
+				.count();
+	}
+
 	@GetMapping(path = "/{product-id}")
 	public ProductEntity getProductById(@PathVariable("product-id") String productId) {
 		return productService.getProductById(productId);

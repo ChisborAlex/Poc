@@ -1,6 +1,5 @@
 package com.bee.shop.service;
 
-import com.bee.shop.domain.ProductMapper;
 import com.bee.shop.model.ProductEntity;
 import com.bee.shop.repo.ProductRepository;
 import lombok.NonNull;
@@ -18,8 +17,6 @@ public class ProductService {
 
 	@NonNull
 	private final ProductRepository productRepository;
-	@NonNull
-	private final ProductMapper productMapper;
 
 	public List<ProductEntity> getAllProducts() {
 		return new ArrayList<>(productRepository.findAll());
